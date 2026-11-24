@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#173f32">
+  <title>Mama Njeri | Fresh Kenyan Food</title>
+  <style>
+    :root {
+      --green: #24452b;
+      --green-light: #e8efdf;
+      --orange: #d99a16;
+      --cream: #fff7e5;
+      --ink: #332319;
+      --muted: #74634e;
+      --white: #ffffff;
+      --wood: #542d19;
+      --gold: #f3c43b;
+      --shadow: 0 14px 38px rgba(72, 43, 20, .15);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--cream);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .topbar {
+      background: var(--green);
+      color: #fff;
+      text-align: center;
+      padding: 8px 16px;
+      font-size: .88rem;
+      letter-spacing: .03em;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255,250,241,.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee7da;
+    }
+    .nav {
+      max-width: 1150px;
+      margin: auto;
+      padding: 15px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .brand { display: flex; align-items: center; gap: 11px; }
+    .brand-logo {
+      width: 62px; height: 48px; object-fit: cover;
+      border-radius: 10px; border: 2px solid var(--gold);
+      box-shadow: 0 4px 12px rgba(84,45,25,.18);
+    }
+    .brand-name { font-weight: 800; color: var(--green); font-size: 1.12rem; line-height: 1.1; }
+    .brand-tag { color: var(--muted); font-size: .72rem; }
+    .nav-links { display: flex; align-items: center; gap: 25px; font-size: .94rem; font-weight: 700; }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-cta, .btn {
+      display: inline-block; border: 0; cursor: pointer;
+      background: linear-gradient(135deg, var(--orange), var(--gold)); color: #3d2810; font-weight: 800;
+      padding: 12px 20px; border-radius: 999px;
+      transition: transform .2s, background .2s;
+    }
+    .nav-cta:hover, .btn:hover { transform: translateY(-2px); background: #cf6526; }
+    .hero {
+      max-width: 1150px; margin: auto; padding: 58px 22px 68px;
+      display: grid; grid-template-columns: 1.02fr .98fr; align-items: center; gap: 48px;
+    }
+    .eyebrow {
+      display: inline-block; color: var(--green); background: var(--green-light);
+      border-radius: 999px; padding: 7px 13px; font-size: .78rem;
+      font-weight: 800; text-transform: uppercase; letter-spacing: .08em;
+    }
+    h1 {
+      color: var(--green); font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(2.7rem, 6vw, 4.8rem); line-height: 1.04;
+      margin: 18px 0;
+    }
+    h1 span { color: var(--orange); }
+    .hero-copy { color: var(--muted); font-size: 1.08rem; max-width: 510px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 27px; }
+    .btn-outline {
+      display: inline-block; border: 1.5px solid var(--green); color: var(--green);
+      padding: 11px 19px; border-radius: 999px; font-weight: 700;
+    }
+    .hero-image-wrap { position: relative; }
+    .hero-image {
+      width: 100%; height: 420px; object-fit: cover;
+      border-radius: 48% 48% 18px 18px; box-shadow: var(--shadow);
+      display: block;
+    }
+    .floating-note {
+      position: absolute; bottom: 22px; left: -22px;
+      background: white; padding: 14px 18px; border-radius: 15px;
+      box-shadow: var(--shadow); font-weight: 800; color: var(--green);
+    }
+    .floating-note small { display: block; color: var(--muted); font-weight: 400; }
+    section { scroll-margin-top: 90px; }
+    .section { max-width: 1150px; margin: auto; padding: 65px 22px; }
+    .section-heading { text-align: center; margin-bottom: 32px; }
+    .section-heading h2 {
+      color: var(--green); font: 800 clamp(2rem, 4vw, 2.8rem) Georgia, serif;
+      margin: 9px 0;
+    }
+    .section-heading p { color: var(--muted); margin: 0 auto; max-width: 570px; }
+    .menu-section { background: linear-gradient(135deg, #fff0c9, #f5e2bd); }
+    .menu-grid {
+      max-width: 1150px; margin: auto; padding: 0 22px 70px;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .food-card {
+      background: white; border-radius: 20px; overflow: hidden;
+      box-shadow: var(--shadow); transition: transform .2s;
+    }
+    .food-card:hover { transform: translateY(-5px); }
+    .food-card img { width: 100%; height: 220px; object-fit: cover; display: block; }
+    .food-info { padding: 20px; }
+    .food-title-row { display: flex; justify-content: space-between; align-items: start; gap: 10px; }
+    .food-info h3 { margin: 0; color: var(--green); font-size: 1.2rem; }
+    .price { color: var(--orange); font-weight: 800; white-space: nowrap; }
+    .food-info p { color: var(--muted); font-size: .93rem; margin: 9px 0 17px; }
+    .order-btn {
+      border: 0; border-radius: 9px; padding: 10px 15px;
+      color: white; background: var(--green); font-weight: 700; cursor: pointer;
+    }
+    .order-btn:hover { background: #245c49; }
+    .about {
+      display: grid; grid-template-columns: .9fr 1.1fr; gap: 42px; align-items: center;
+    }
+    .about img { width: 100%; height: 330px; object-fit: cover; border-radius: 20px; }
+    .about h2 { color: var(--green); font: 800 2.5rem Georgia, serif; margin: 10px 0; }
+    .about p { color: var(--muted); }
+    .order-section { background: linear-gradient(135deg, var(--wood), #24452b); color: white; }
+    .order-inner { max-width: 760px; margin: auto; padding: 65px 22px; }
+    .order-inner .section-heading h2 { color: white; }
+    .order-inner .section-heading p { color: #d6e1d8; }
+    form {
+      background: white; color: var(--ink); padding: 28px;
+      border-radius: 20px; box-shadow: var(--shadow);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 17px;
+    }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field.full { grid-column: 1 / -1; }
+    label { font-size: .9rem; font-weight: 700; color: var(--green); }
+    input, select, textarea {
+      width: 100%; padding: 12px 13px; border: 1px solid #d8ddd5;
+      border-radius: 9px; font: inherit; background: #fff;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: 2px solid #e8a16f; border-color: var(--orange);
+    }
+    form .btn { justify-self: start; }
+    #form-message { grid-column: 1 / -1; color: var(--green); font-weight: 700; margin: 0; }
+    footer { background: linear-gradient(110deg, #3b2116, #24452b); color: #fff4d7; padding: 30px 22px; text-align: center; border-top: 5px solid var(--gold); }
+    footer strong { color: white; font-size: 1.15rem; }
+    footer p { margin: 5px 0; color: #c7d3ca; font-size: .9rem; }
+    @media (max-width: 760px) {
+      .nav { flex-wrap: wrap; }
+      .nav-links { order: 3; width: 100%; justify-content: center; gap: 17px; font-size: .88rem; }
+      .nav-cta { padding: 10px 14px; font-size: .86rem; }
+      .hero { grid-template-columns: 1fr; padding-top: 38px; gap: 30px; }
+      .hero-image { height: 310px; }
+      .floating-note { left: 10px; }
+      .menu-grid { grid-template-columns: 1fr; max-width: 480px; }
+      .about { grid-template-columns: 1fr; }
+      .about img { height: 260px; }
+      form { grid-template-columns: 1fr; padding: 21px; }
+      .field.full, #form-message { grid-column: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">Freshly prepared Kenyan favourites • Made with love</div>
+
+  <header>
+    <nav class="nav">
+      <a class="brand" href="#home" aria-label="Mama Njeri home">
+        <img class="brand-logo" src="images/mama-njeri-logo.jpg" alt="Mama Njeri Restaurant logo">
+        <span>
+          <span class="brand-name">MAMA NJERI</span>
+          <span class="brand-tag">A taste of home</span>
+        </span>
+      </a>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#menu">Our Menu</a>
+        <a href="#about">About</a>
+        <a href="#order">Order</a>
+      </div>
+      <a class="nav-cta" href="#order">Order Now</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div>
+        <span class="eyebrow">Welcome to Mama Njeri</span>
+        <h1>Good food.<br><span>Good mood.</span></h1>
+        <p class="hero-copy">
+          Enjoy comforting Kenyan favourites, freshly prepared and served with
+          the warmth of home. Find your favourite on our menu.
+        </p>
+        <div class="hero-actions">
+          <a class="btn" href="#menu">Explore Our Menu</a>
+          <a class="btn-outline" href="#about">Our Story</a>
+        </div>
+      </div>
+      <div class="hero-image-wrap">
+        <img class="hero-image"
+          src="images/restaurant.jpg"
+          alt="A freshly prepared meal served on a plate">
+        <div class="floating-note">Made fresh daily<small>Simple food, lovely moments</small></div>
+      </div>
+    </section>
+
+    <section class="menu-section" id="menu">
+      <div class="section">
+        <div class="section-heading">
+          <span class="eyebrow">From our kitchen</span>
+          <h2>Our Favourite Dishes</h2>
+          <p>Enjoy a delicious meal at a friendly price. Choose a dish to start your order.</p>
+        </div>
+      </div>
+      <div class="menu-grid">
+        <article class="food-card">
+          <img src="images/pilau.jpg" alt="A plate of pilau rice">
+          <div class="food-info">
+            <div class="food-title-row"><h3>Pilau</h3><span class="price">KSh 350</span></div>
+            <p>Fragrant, flavourful rice inspired by a Kenyan favourite.</p>
+            <button class="order-btn" type="button" onclick="chooseDish('Pilau')">Order this dish</button>
+          </div>
+        </article>
+        <article class="food-card">
+          <img src="images/ugali-sukuma.jpg" alt="Fresh vegetables and greens">
+          <div class="food-info">
+            <div class="food-title-row"><h3>Ugali &amp; Sukuma</h3><span class="price">KSh 250</span></div>
+            <p>A comforting Kenyan classic with tasty green vegetables.</p>
+            <button class="order-btn" type="button" onclick="chooseDish('Ugali & Sukuma')">Order this dish</button>
+          </div>
+        </article>
+        <article class="food-card">
+          <img src="images/chapati.jpg" alt="Freshly cooked flatbread">
+          <div class="food-info">
+            <div class="food-title-row"><h3>Chapati (2)</h3><span class="price">KSh 100</span></div>
+            <p>Two soft, golden chapatis, perfect for any meal.</p>
+            <button class="order-btn" type="button" onclick="chooseDish('Chapati (2)')">Order this dish</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="about">
+        <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1000&q=85" alt="A welcoming kitchen">
+        <div>
+          <span class="eyebrow">A little about us</span>
+          <h2>Welcome to our table</h2>
+          <p>
+            At Mama Njeri, we believe good food brings people together.
+            Our menu celebrates familiar favourites and the simple joy of
+            sharing a satisfying meal.
+          </p>
+          <p>Choose your dish from our menu and fill in the order form below.</p>
+          <a class="btn" href="#order">Place an Order</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="order-section" id="order">
+      <div class="order-inner">
+        <div class="section-heading">
+          <span class="eyebrow">Your meal is calling</span>
+          <h2>Place Your Order</h2>
+          <p>Enter your details and choose a dish. This demo form will show a confirmation on this page.</p>
+        </div>
+        <form id="order-form">
+          <div class="field">
+            <label for="customer">Your name</label>
+            <input id="customer" name="customer" type="text" placeholder="Enter your name" required>
+          </div>
+          <div class="field">
+            <label for="phone">Phone number</label>
+            <input id="phone" name="phone" type="tel" placeholder="e.g. 07XX XXX XXX" required>
+          </div>
+          <div class="field">
+            <label for="dish">Select a dish</label>
+            <select id="dish" name="dish" required>
+              <option value="">Choose a dish</option>
+              <option value="Pilau">Pilau — KSh 350</option>
+              <option value="Ugali & Sukuma">Ugali &amp; Sukuma — KSh 250</option>
+              <option value="Chapati (2)">Chapati (2) — KSh 100</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="quantity">Quantity</label>
+            <input id="quantity" name="quantity" type="number" min="1" value="1" required>
+          </div>
+          <div class="field full">
+            <label for="notes">Extra instructions (optional)</label>
+            <textarea id="notes" name="notes" rows="3" placeholder="Any special instructions?"></textarea>
+          </div>
+          <button class="btn" type="submit">Submit Order</button>
+          <p id="form-message" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>MAMA NJERI</strong>
+    <p>A taste of home, made with love.</p>
+    <p>&copy; <span id="year"></span> Mama Njeri. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function chooseDish(dishName) {
+      document.getElementById('dish').value = dishName;
+      document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    document.getElementById('order-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const name = document.getElementById('customer').value.trim();
+      const dish = document.getElementById('dish').value;
+      const quantity = document.getElementById('quantity').value;
+      document.getElementById('form-message').textContent =
+        `Thank you, ${name}! Your request for ${quantity} x ${dish} has been recorded in this demo.`;
+      this.reset();
+      document.getElementById('quantity').value = 1;
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
